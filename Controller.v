@@ -16,9 +16,16 @@ module Controller(
 
     always @(*) begin
         if(h_cnt >= 'd144 & h_cnt < 'd784 & v_cnt >= 'd35 & v_cnt < 'd515) begin
-            r = 1'b0;
-            g = 1'b0;
-            b = 1'b1;
+            if(h_cnt > 'd464) begin
+                r = 1'b1;
+                g = 1'b0;
+                b = 1'b0;
+            end
+            else begin
+                r = 1'b0;
+                g = 1'b1;
+                b = 1'b0;
+            end
         end
         else begin
             r = 1'b0;
@@ -27,6 +34,6 @@ module Controller(
         end
     end
 
-    assign hs = (h_cnt >= 'd0 & h_cnt < 'd96);
-    assign vs = (v_cnt >= 'd0 & v_cnt < 'd2);
+    assign hs = (h_cnt > 'd96);
+    assign vs = (v_cnt > 'd2);
 endmodule
